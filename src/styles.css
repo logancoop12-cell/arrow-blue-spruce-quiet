@@ -1,0 +1,86 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "IBM Plex Sans", system-ui, sans-serif;
+  --font-display: "Newsreader", Georgia, "Times New Roman", serif;
+  --color-bg: #0e1110;
+  --color-surface: #171b19;
+  --color-raised: #222824;
+  --color-fg: #e8eee9;
+  --color-muted: #93a098;
+  --color-subtle: #667068;
+  --color-line: #2c342f;
+  --color-accent: #e8eee9;
+  --color-accent-fg: #101412;
+  --color-buy: #8fbfa3;
+  --color-sell: #e08b7d;
+  --radius-sm: 0.5rem;
+  --radius-xl: 1.75rem;
+}
+
+:root {
+  --motion-quick: 150ms;
+  --motion-fast: 250ms;
+  --ease-smooth-out: cubic-bezier(0.22, 1, 0.36, 1);
+  color-scheme: dark;
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background: var(--color-bg);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-fg);
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .pressable {
+    transition:
+      transform var(--motion-quick) var(--ease-smooth-out),
+      background-color var(--motion-quick) var(--ease-smooth-out),
+      color var(--motion-quick) var(--ease-smooth-out);
+  }
+
+  .pressable:active:not(:disabled) {
+    transform: scale(0.98);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pressable {
+    transition: none;
+  }
+
+  .pressable:active:not(:disabled) {
+    transform: none;
+  }
+}
